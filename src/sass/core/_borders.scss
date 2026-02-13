@@ -1,0 +1,17 @@
+$border-widths: (
+  md: rem(1px),
+);
+
+$border-colors: (
+  header: (
+    light: "neutral-200",
+  ),
+);
+
+$borders: (
+  header: (
+    width: "md",
+    style: "solid",
+    color: "header",
+  ),
+);
