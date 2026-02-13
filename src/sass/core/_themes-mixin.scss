@@ -111,28 +111,6 @@
       }
     }
   }
-  // Skip-nav-link
-  @if meta.variable-exists("skip-nav-link-colors") {
-    @each $property, $mode-map in $skip-nav-link-colors {
-      @each $mode, $value in $mode-map {
-        @if $mode == $theme {
-          --skip-nav-link-#{$property}-color: var(--clr-#{$value});
-        }
-      }
-    }
-  }
-  // Nav-toggle
-  @if meta.variable-exists("nav-toggle-colors") {
-    @each $state, $property-map in $nav-toggle-colors {
-      @each $property, $mode-map in $property-map {
-        @each $mode, $value in $mode-map {
-          @if $mode == $theme {
-            --nav-toggle-#{$property}-color-#{$state}: var(--clr-#{$value});
-          }
-        }
-      }
-    }
-  }
   // Color-scheme
   color-scheme: #{$theme};
 }

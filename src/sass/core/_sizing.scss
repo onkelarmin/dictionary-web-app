@@ -3,7 +3,7 @@
 
 // Wrapper max-widths
 $wrapper-sizes: (
-  default: 1170px,
+  default: 736px,
   narrow: 1088px,
   wide: 1360px,
 );
@@ -26,14 +26,33 @@ $static-sizes: (
 );
 
 // Breakpoint-specific sizes
-$breakpoint-specific-sizes: ((20, 24, 24), (24, 32, 32), (24, 32, 48));
+$breakpoint-specific-sizes: (
+  (0px, 0px, 22px),
+  (10px, 20px, 20px),
+  (16px, 24px, 24px),
+  (24px, 40px, 40px),
+  (24px, 48px, 48px),
+  (24px, 58px, 58px),
+  (28px, 28px, 32px),
+  (28px, 40px, 40px),
+  (32px, 40px, 40px),
+  (32px, 48px, 48px),
+  (48px, 48px, 75px),
+  (62px, 102px, 110px),
+  (96px, 128px, 128px),
+  (122px, 183px, 183px)
+);
 
 //  Logo
 $logo-sizes: (
-  default: rem(16px),
+  default: bp(28px, 28px, 32px),
 );
 
 // SVG
 $svg-sizes: (
-  theme: rem(16px),
+  moon: rem(20px),
+  arrow: rem(12px),
+  search: rem(16px),
+  play: bp(48px, 48px, 75px),
+  new-window: rem(12px),
 );

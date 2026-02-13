@@ -3,23 +3,34 @@
 
 // Page padding
 $padding-page: (
-  inline-start: rem(16px),
-  inline-end: rem(16px),
-  block-start: rem(16px),
-  block-end: rem(16px),
+  inline-start: bp(24px, 40px, 40px),
+  inline-end: bp(24px, 40px, 40px),
+  block-start: bp(24px, 58px, 58px),
+  block-end: bp(62px, 102px, 110px),
 );
 
 // Section padding
 $padding-section: (
-  md: rem(16px),
+  xs: bp(24px, 48px, 48px),
+  sm: bp(24px, 58px, 58px),
+  md: bp(28px, 40px, 40px),
+  lg: bp(32px, 48px, 48px),
+  xl: bp(96px, 128px, 128px),
 );
 
 // Container padding
 $padding-container: (
-  md: rem(16px),
+  xs: bp(0px, 0px, 22px),
+  sm: bp(16px, 24px, 24px),
+  md: rem(24px),
 );
 
 // Container spacing
 $spacer-container: (
+  2xs: rem(8px),
+  xs: rem(10px),
+  sm: rem(12px),
   md: rem(16px),
+  lg: rem(20px),
+  xl: rem(24px),
 );

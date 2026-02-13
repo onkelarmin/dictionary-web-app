@@ -1,8 +1,42 @@
 ---
 // Component imports
 import Wrapper from "@components/utilities/Wrapper.astro";
+
+// Asset imports
+import Logo from "@assets/logo.svg";
+import FontSelector from "@/components/ui/FontSelector.astro";
 ---
 
 <header>
-  <Wrapper />
+  <Wrapper>
+    <div class="layout">
+      <div class="logo">
+        <Logo />
+      </div>
+      <div class="controls">
+        <FontSelector />
+      </div>
+    </div>
+  </Wrapper>
 </header>
+
+<style lang="scss">
+  header {
+    margin-block-start: var(--pad-page-block-start);
+  }
+
+  .layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo > svg {
+    width: var(--size-logo-default);
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+  }
+</style>

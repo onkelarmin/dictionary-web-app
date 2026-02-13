@@ -7,9 +7,37 @@
   font-weight: 100 900;
   font-display: swap;
 }
+@font-face {
+  font-family: "Inter-italic";
+  src: url("/fonts/Inter-italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora";
+  src: url("/fonts/Lora.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lora-italic";
+  src: url("/fonts/Lora-italic.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inconsolata";
+  src: url("/fonts/Inconsolata.woff2") format("woff2");
+  font-weight: 200 900;
+  font-display: swap;
+}
 
 $font-family: (
-  base: "'Inter', system-ui, sans-serif",
+  sans: "'Inter', sans-serif",
+  sans-italic: "'Inter-italic', sans-serif",
+  serif: "'Lora', serif",
+  serif-italic: "'Lora-italic', serif",
+  mono: "'Inconsolata', monospace",
 );
 
 // Font-weights
@@ -29,65 +57,47 @@ $font-weights: (
 $fonts: (
   1: (
     "family": "base",
-    "size": fluid(100px, 200px),
+    "size": fluid(32px, 64px),
     "weight": "bold",
-    "line-height": 0.73,
-    "letter-spacing": fluid(-2.5px, -5px),
   ),
   2: (
-    "family": "base",
-    "size": fluid(20px, 56px),
+    "family": "accent",
+    "size": fluid(18px, 24px),
     "weight": "bold",
-    "line-height": 1.2,
-    "letter-spacing": 0px,
   ),
   3: (
-    "family": "base",
-    "size": fluid(20px, 40px),
-    "weight": "light",
-    "line-height": 0.73,
-    "letter-spacing": 0px,
+    "family": "sans",
+    "size": rem(24px),
+    "weight": "regular",
   ),
   4: (
     "family": "base",
-    "size": fluid(15px, 24px),
+    "size": fluid(16px, 20px),
     "weight": "bold",
-    "line-height": 1.1,
-    "letter-spacing": fluid(3px, 4.8px),
   ),
   5: (
     "family": "base",
-    "size": rem(20px),
+    "size": fluid(16px, 20px),
     "weight": "regular",
-    "line-height": 1.1,
-    "letter-spacing": rem(4px),
   ),
   6: (
     "family": "base",
     "size": rem(18px),
-    "weight": "regular",
-    "line-height": 1.5,
-    "letter-spacing": 0px,
+    "weight": "bold",
   ),
   7: (
     "family": "base",
-    "size": rem(18px),
-    "weight": "bold",
-    "line-height": 1.5,
-    "letter-spacing": 0px,
+    "size": fluid(15px, 18px),
+    "weight": "regular",
   ),
   8: (
     "family": "base",
-    "size": rem(16px),
+    "size": rem(14px),
     "weight": "bold",
-    "line-height": 1.4,
-    "letter-spacing": rem(5px),
   ),
   9: (
     "family": "base",
-    "size": fluid(10px, 15px),
+    "size": rem(14px),
     "weight": "regular",
-    "line-height": 1.5,
-    "letter-spacing": fluid(2px, 3px),
   ),
 );

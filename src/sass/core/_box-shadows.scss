@@ -2,19 +2,21 @@
 $box-shadow-colors: (
   none: (
     light: "transparent",
+    dark: "transparent",
   ),
-  mobile-nav-menu: (
-    light: "neutral-600" 0.16,
+  dropdown: (
+    light: "neutral-950" 0.1,
+    dark: "brand-500",
   ),
 );
 
 $box-shadows-offsets: (
   none: 0px 0px 0px 0px,
-  mobile-nav-menu: 0px 12px 22px -12px,
+  dropdown: 0px 5px 30px 0px,
 );
 
 $box-shadows: (
-  mobile-nav-menu: (
-    var(--bs-mobile-nav-menu),
+  dropdown: (
+    var(--bs-dropdown),
   ),
 );

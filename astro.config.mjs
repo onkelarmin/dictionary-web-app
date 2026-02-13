@@ -8,7 +8,7 @@ export default defineConfig({
     responsiveStyles: true,
     layout: "constrained",
   },
-  // devToolbar: {
-  //   enabled: false,
-  // },
+  devToolbar: {
+    enabled: false,
+  },
 });

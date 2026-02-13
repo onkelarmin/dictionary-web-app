@@ -12,6 +12,49 @@
   }
 }
 
+// Fonts
+[data-font="serif"] {
+  --ff-base: var(--ff-serif);
+  --ff-accent: var(--ff-serif-italic);
+  --lh-1: 1.3;
+  --lh-2: 1.2;
+  --lh-3: 1.2;
+  --lh-4: 1.3;
+  --lh-5: 1.3;
+  --lh-6: 1.33;
+  --lh-6: 1.33;
+  --lh-6: 1.33;
+  --lh-7: 1.6;
+  --lh-8: 1.7;
+  --lh-9: 1.3;
+}
+[data-font="sans"] {
+  --ff-base: var(--ff-sans);
+  --ff-accent: var(--ff-sans-italic);
+  --lh-1: 1.2;
+  --lh-2: 1.2;
+  --lh-3: 1.2;
+  --lh-4: 1.2;
+  --lh-5: 1.2;
+  --lh-6: 1.33;
+  --lh-7: 1.6;
+  --lh-8: 1.7;
+  --lh-9: 1.2;
+}
+[data-font="mono"] {
+  --ff-base: var(--ff-mono);
+  --ff-accent: var(--ff-mono);
+  --lh-1: 1.05;
+  --lh-2: 1.2;
+  --lh-3: 1.2;
+  --lh-4: 1.05;
+  --lh-5: 1.05;
+  --lh-6: 1.33;
+  --lh-7: 1.6;
+  --lh-8: 1.7;
+  --lh-9: 1.07;
+}
+
 // Brand
 [data-brand="primary"] {
   $custom-brand: "primary";

@@ -79,7 +79,6 @@
 @each $preset, $property-map in $fonts {
   .font-#{$preset} {
     font: var(--font-#{$preset});
-    letter-spacing: var(--ls-#{$preset});
   }
 }
 

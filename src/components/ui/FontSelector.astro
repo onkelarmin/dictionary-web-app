@@ -1,0 +1,109 @@
+---
+// Asset imports
+import ArrowSvg from "@assets/icon-arrow-down.svg";
+---
+
+<div>
+  <button
+    type="button"
+    id="font-popover-toggle"
+    popovertarget="font-popover-menu"
+    popovertargetaction="toggle"
+  >
+    <span class="visually-hidden">Font: </span>
+    <span class="current">Serif</span>
+    <ArrowSvg class="arrow-svg" aria-hidden="true" />
+  </button>
+
+  <div id="font-popover-menu" popover>
+    <ul>
+      <li>
+        <button type="button" data-font="sans">Sans Serif</button>
+      </li>
+      <li><button type="button" data-font="serif">Serif</button></li>
+      <li><button type="button" data-font="mono">Mono</button></li>
+    </ul>
+  </div>
+</div>
+
+<style lang="scss">
+  // Button
+  #font-popover-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-cont-md);
+    font: var(--font-8);
+    background: none;
+    color: var(--btn-fg-color-idle-font);
+    border: none;
+    anchor-name: --font-popover-toggle;
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: 0px solid transparent;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--btn-fg-color-hover-font);
+      }
+    }
+
+    &:focus-visible {
+      outline: var(--btn-outline-width-font) solid
+        var(--btn-outline-color-focus-font);
+      outline-offset: var(--btn-outline-offset-font);
+    }
+
+    .arrow-svg {
+      width: var(--size-svg-arrow);
+    }
+  }
+
+  //   Menu
+  #font-popover-menu {
+    width: var(--size-122px-183px-183px);
+    background-color: var(--bg-container-dropdown);
+    border: none;
+    border-radius: var(--br-md);
+    box-shadow: var(--bs-dropdown);
+    padding-inline: var(--pad-cont-sm);
+    padding-block: var(--pad-cont-md);
+    position-anchor: --font-popover-toggle;
+    inset: unset;
+    top: anchor(bottom);
+    right: anchor(right);
+    margin-block-start: var(--size-10);
+
+    ul {
+      list-style: none;
+      display: grid;
+      gap: var(--space-cont-md);
+    }
+
+    button {
+      width: 100%;
+      text-align: start;
+      font: var(--font-6);
+      background: none;
+      border: none;
+
+      &[data-font="serif"] {
+        font-family: var(--ff-serif);
+      }
+      &[data-font="sans"] {
+        font-family: var(--ff-sans);
+      }
+      &[data-font="mono"] {
+        font-family: var(--ff-mono);
+      }
+
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+    }
+  }
+</style>

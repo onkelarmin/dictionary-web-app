@@ -1,17 +1,29 @@
+@use "helper" as *;
+
 $border-widths: (
   md: rem(1px),
 );
 
 $border-colors: (
-  header: (
+  divider-header: (
     light: "neutral-200",
+    dark: "neutral-700",
+  ),
+  divider-body: (
+    light: "neutral-200",
+    dark: "neutral-200",
   ),
 );
 
 $borders: (
-  header: (
+  divider-body: (
     width: "md",
     style: "solid",
-    color: "header",
+    color: "divider-body",
+  ),
+  divider-header: (
+    width: "md",
+    style: "solid",
+    color: "divider-header",
   ),
 );

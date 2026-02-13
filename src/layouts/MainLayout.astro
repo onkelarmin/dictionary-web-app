@@ -7,7 +7,6 @@ import type { HTMLAttributes } from "astro/types";
 
 // Component imports
 import BaseHead from "@layouts/BaseHead.astro";
-import SkipNavLink from "@/components/layout/SkipNavLink.astro";
 import Header from "@/components/layout/Header.astro";
 
 interface Props extends HTMLAttributes<"html"> {
@@ -17,9 +16,8 @@ interface Props extends HTMLAttributes<"html"> {
 }
 ---
 
-<html lang="en">
+<html lang="en" data-font="serif">
   <BaseHead {...Astro.props} />
-  <SkipNavLink />
   <Header />
   <body>
     <main id="main">
