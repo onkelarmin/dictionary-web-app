@@ -1,0 +1,81 @@
+---
+// Asset imports
+import MoonSvg from "@assets/icon-moon.svg";
+---
+
+<label class="theme-switch" aria-label="Dark mode">
+  <span class="track" aria-hidden="true"></span>
+  <input type="checkbox" role="switch" class="visually-hidden" />
+
+  <MoonSvg class="moon-svg" aria-hidden="true" />
+</label>
+
+<style lang="scss">
+  label {
+    display: flex;
+    gap: var(--theme-switch-gap);
+    color: var(--theme-switch-off-color);
+    transition: color var(--trans-default);
+    padding-inline-start: var(--size-16px-24px-24px);
+    > * {
+      cursor: pointer;
+    }
+
+    // Focus
+    &:has(:focus-visible) .track {
+      outline: var(--border-default-focus);
+      outline-offset: var(--offset-default-focus);
+    }
+
+    .track {
+      position: relative;
+      display: inline-grid;
+      align-items: center;
+      width: var(--theme-switch-track-width);
+      height: var(--theme-switch-track-height);
+      background-color: var(--theme-switch-off-color);
+      border-radius: var(--theme-switch-border-radius);
+      transition: background-color var(--trans-default);
+
+      @media (hover: hover) {
+        &:hover {
+          background-color: var(--theme-switch-track-hover-color);
+        }
+      }
+
+      //   Thumb
+      &::before {
+        content: "";
+        position: absolute;
+        left: var(--theme-switch-thumb-inset);
+        width: var(--theme-switch-thumb-size);
+        aspect-ratio: 1;
+        border-radius: var(--br-round);
+        background-color: var(--theme-switch-thumb-color);
+        transition: transform var(--trans-default-sensitive);
+      }
+    }
+
+    // Checked state
+    &:has(:checked) {
+      color: var(--theme-switch-on-color);
+
+      .track {
+        background-color: var(--theme-switch-on-color);
+
+        &::before {
+          transform: translateX(
+            calc(
+              var(--theme-switch-track-width) - var(--theme-switch-thumb-size) -
+                2 * var(--theme-switch-thumb-inset)
+            )
+          );
+        }
+      }
+    }
+
+    .moon-svg {
+      width: var(--size-svg-moon);
+    }
+  }
+</style>

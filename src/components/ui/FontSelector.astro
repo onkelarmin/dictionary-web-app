@@ -3,7 +3,7 @@
 import ArrowSvg from "@assets/icon-arrow-down.svg";
 ---
 
-<div>
+<div class="font-selector">
   <button
     type="button"
     id="font-popover-toggle"
@@ -27,40 +27,63 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
 </div>
 
 <style lang="scss">
+  .font-selector {
+    border-right: var(--border-divider-header);
+    padding-inline-end: var(--size-16px-24px-24px);
+  }
+
   // Button
   #font-popover-toggle {
     display: flex;
     align-items: center;
     gap: var(--space-cont-md);
-    font: var(--font-8);
+    font: var(--font-6);
     background: none;
     color: var(--btn-fg-color-idle-font);
     border: none;
+    overflow: clip;
+    transition: color var(--trans-default);
     anchor-name: --font-popover-toggle;
+
+    .arrow-svg {
+      width: var(--size-svg-arrow);
+      transition: rotate var(--trans-default-sensitive);
+    }
 
     &:not(:disabled) {
       cursor: pointer;
     }
 
-    &:focus {
-      outline: 0px solid transparent;
-    }
-
     @media (hover: hover) {
       &:hover {
-        color: var(--btn-fg-color-hover-font);
+        color: var(--fg-text-accent);
+
+        .arrow-svg {
+          animation-name: arrowAnimation;
+          animation-duration: var(--motion-slow-sensitive);
+          animation-timing-function: var(--ease-in-out);
+        }
       }
     }
+  }
 
-    &:focus-visible {
-      outline: var(--btn-outline-width-font) solid
-        var(--btn-outline-color-focus-font);
-      outline-offset: var(--btn-outline-offset-font);
+  @keyframes arrowAnimation {
+    40% {
+      transform: translateY(var(--size-10));
+      opacity: 0;
     }
+    60% {
+      transform: translateY(calc(var(--size-10) * -1));
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 
-    .arrow-svg {
-      width: var(--size-svg-arrow);
-    }
+  .font-selector:has(:popover-open) .arrow-svg {
+    rotate: 180deg;
   }
 
   //   Menu
@@ -69,14 +92,31 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
     background-color: var(--bg-container-dropdown);
     border: none;
     border-radius: var(--br-md);
-    box-shadow: var(--bs-dropdown);
+    box-shadow: var(--bs-none);
     padding-inline: var(--pad-cont-sm);
     padding-block: var(--pad-cont-md);
     position-anchor: --font-popover-toggle;
     inset: unset;
     top: anchor(bottom);
     right: anchor(right);
-    margin-block-start: var(--size-10);
+    margin-block-start: var(--size-12);
+    opacity: 0;
+    transition:
+      opacity var(--trans-default),
+      box-shadow var(--trans-default),
+      overlay 0.5s allow-discrete,
+      display var(--motion-default) allow-discrete;
+
+    // open state
+    &:popover-open {
+      opacity: 1;
+      box-shadow: var(--bs-dropdown);
+
+      @starting-style {
+        opacity: 0;
+        box-shadow: var(--bs-none);
+      }
+    }
 
     ul {
       list-style: none;
@@ -90,6 +130,7 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
       font: var(--font-6);
       background: none;
       border: none;
+      transition: color var(--trans-default);
 
       &[data-font="serif"] {
         font-family: var(--ff-serif);
@@ -103,6 +144,12 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
 
       &:not(:disabled) {
         cursor: pointer;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--fg-text-accent);
+        }
       }
     }
   }

@@ -5,6 +5,25 @@ body {
   padding-block-end: var(--pad-page-block-end);
 }
 
+:where(
+  a[href],
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [tabindex]:not([tabindex="-1"]),
+  [contenteditable="true"]
+) {
+  &:focus {
+    outline: 0px solid transparent;
+  }
+  &:focus-visible {
+    outline: var(--border-default-focus);
+    outline-offset: var(--offset-default-focus);
+  }
+}
+
 ::selection {
   background-color: var(--bg-text-selection);
   color: var(--fg-text-selection);

@@ -34,3 +34,8 @@ $spacer-container: (
   lg: rem(20px),
   xl: rem(24px),
 );
+
+// Offset
+$offset: (
+  default-focus: rem(3px),
+);

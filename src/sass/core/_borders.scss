@@ -2,9 +2,14 @@
 
 $border-widths: (
   md: rem(1px),
+  lg: rem(2px),
 );
 
 $border-colors: (
+  default-focus: (
+    light: "brand-500",
+    dark: "brand-500",
+  ),
   divider-header: (
     light: "neutral-200",
     dark: "neutral-700",
@@ -16,6 +21,11 @@ $border-colors: (
 );
 
 $borders: (
+  default-focus: (
+    width: "lg",
+    style: "solid",
+    color: "default-focus",
+  ),
   divider-body: (
     width: "md",
     style: "solid",

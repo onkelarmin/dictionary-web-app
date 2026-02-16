@@ -86,31 +86,15 @@
       }
     }
   }
-  // Buttons
-  @each $variant, $state-map in $button-colors {
-    @each $state, $property-map in $state-map {
-      @each $property, $mode-map in $property-map {
-        @each $mode, $value in $mode-map {
-          @if $mode == $theme {
-            @if meta.type-of($value) == list {
-              // account for opacity
-              --btn-#{$property}-color-#{$state}-#{$variant}: oklch(
-                from var(--clr-#{list.nth($value, 1)})
-                  l
-                  c
-                  h /
-                  #{list.nth($value, 2)}
-              );
-            } @else {
-              --btn-#{$property}-color-#{$state}-#{$variant}: var(
-                --clr-#{$value}
-              );
-            }
-          }
-        }
+  // Theme switch
+  @each $property, $mode-map in $theme-switch-colors {
+    @each $mode, $value in $mode-map {
+      @if $mode == $theme {
+        --theme-switch-#{$property}-color: var(--clr-#{$value});
       }
     }
   }
+
   // Color-scheme
   color-scheme: #{$theme};
 }

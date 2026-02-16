@@ -1,34 +1,30 @@
 @use "helper" as *;
 
-// Buttons
-$button-colors: (
-  font: (
-    idle: (
-      fg: (
-        light: "neutral-800",
-        dark: "neutral-000",
-      ),
-    ),
-    hover: (
-      fg: (
-        light: "neutral-500",
-        dark: "neutral-200",
-      ),
-    ),
-    focus: (
-      outline: (
-        light: "brand-500",
-        dark: "brand-500",
-      ),
-    ),
+// Theme-switch
+$theme-switch-colors: (
+  off: (
+    light: "neutral-500",
+    dark: "neutral-500",
+  ),
+  on: (
+    light: "brand-500",
+    dark: "brand-500",
+  ),
+  track-hover: (
+    light: "brand-500",
+    dark: "brand-500",
+  ),
+  thumb: (
+    light: "neutral-000",
+    dark: "neutral-000",
   ),
 );
 
-$button-appearance: (
-  outline-width: (
-    font: rem(2px),
-  ),
-  outline-offset: (
-    font: rem(3px),
-  ),
+$theme-switch-appearance: (
+  track-width: rem(40px),
+  track-height: rem(20px),
+  thumb-size: rem(14px),
+  thumb-inset: rem(3px),
+  border-radius: 1000vw,
+  gap: bp(10px, 20px, 20px),
 );

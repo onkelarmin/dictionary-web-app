@@ -68,4 +68,9 @@
   @each $size, $value in $spacer-container {
     --space-cont-#{$size}: #{$value};
   }
+
+  // Offset
+  @each $size, $value in $offset {
+    --offset-#{$size}: #{$value};
+  }
 }
