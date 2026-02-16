@@ -61,6 +61,16 @@ $background-colors: (
       dark: "neutral-100",
     ),
   ),
+  play-svg: (
+    idle: (
+      light: "brand-500" 0.25,
+      dark: "brand-500" 0.25,
+    ),
+    hover: (
+      light: "brand-500",
+      dark: "brand-500",
+    ),
+  ),
 );
 
 // Foreground-colors
@@ -85,6 +95,16 @@ $foreground-colors: (
     target: (
       light: "neutral-000",
       dark: "neutral-900",
+    ),
+  ),
+  play-svg: (
+    idle: (
+      light: "brand-500",
+      dark: "brand-500",
+    ),
+    hover: (
+      light: "neutral-000",
+      dark: "neutral-000",
     ),
   ),
 );

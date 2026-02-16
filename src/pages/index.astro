@@ -18,6 +18,312 @@ const page = sitePages.home;
   ogImage={page.ogImage}
 >
   <Wrapper>
+    <h1 class="visually-hidden">Dictionary Web App</h1>
     <Searchbar />
+    <div id="results"></div>
+
+    <template id="word-header-template"> </template>
+    <template id="details-template"></template>
+    <template id="source-template"></template>
+
+    <header class="word-header">
+      <h2 class="word">keyboard</h2>
+      <p class="phonetic">/ˈkiːbɔːd/</p>
+      <button type="button" class="audio-button">
+        <span class="visually-hidden">Play pronunciation</span>
+        <svg
+          class="play-svg"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 75 75"
+          ><g fill-rule="evenodd"
+            ><circle class="bg" cx="37.5" cy="37.5" r="37.5"></circle><path
+              class="fg"
+              d="M29 27v21l21-10.5z"></path></g
+          ></svg
+        >
+      </button>
+    </header>
+
+    <ul class="part-of-speech-list">
+      <li class="part-of-speech">
+        <h3>noun<span class="line" aria-hidden="true"></span></h3>
+
+        <div class="details">
+          <!-- Definitions -->
+          <section class="definitions">
+            <h4>Meaning</h4>
+            <ul class="definitions-list">
+              <li>
+                (etc.) A set of keys used to operate a typewriter, computer etc.
+              </li>
+              <li>
+                A component of many instruments including the piano, organ, and
+                harpsichord consisting of usually black and white keys that
+                cause different tones to be produced when struck.
+              </li>
+              <li>
+                A device with keys of a musical keyboard, used to control
+                electronic sound-producing devices which may be built into or
+                separate from the keyboard device.
+              </li>
+            </ul>
+          </section>
+
+          <!-- Synonyms -->
+          <section class="synonyms">
+            <h4>Synonyms</h4>
+            <ul class="synonyms-list">
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+            </ul>
+          </section>
+
+          <!-- Antonyms -->
+          <section class="antonyms">
+            <h4>Antonyms</h4>
+            <ul class="antonyms-list">
+              <li><a href="#">electronic keyboard</a></li>
+              <li><a href="#">electronic keyboard</a></li>
+            </ul>
+          </section>
+
+          <!-- Example -->
+          <section class="example">
+            <h4>Example</h4>
+            <p>"Keyboarding is the part of this job I hate the most."</p>
+          </section>
+        </div>
+      </li>
+    </ul>
+
+    <footer class="source-footer">
+      <p>Source</p>
+      <div class="link">
+        <a href="#">https://en.wiktionary.org/wiki/keyboard</a>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"
+          ><path
+            fill="none"
+            stroke="#838383"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
+          ></path></svg
+        >
+      </div>
+    </footer>
   </Wrapper>
 </MainLayout>
+
+<style lang="scss">
+  // Word header
+  .word-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-cont-2xs);
+    margin-block-start: var(--pad-sect-xs);
+
+    .word {
+      font: var(--font-1);
+    }
+
+    .phonetic {
+      font: var(--font-3);
+      color: var(--fg-text-accent);
+    }
+
+    // Audio button
+    .audio-button {
+      grid-column: -2 / -1;
+      grid-row: 1 / 3;
+      height: var(--size-svg-play);
+      align-self: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: var(--br-round);
+
+      .play-svg {
+        width: var(--size-svg-play);
+
+        .bg {
+          fill: var(--bg-play-svg-idle);
+          transition: fill var(--trans-default);
+        }
+        .fg {
+          fill: var(--fg-play-svg-idle);
+          transition: fill var(--trans-default);
+        }
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          .play-svg {
+            .bg {
+              fill: var(--bg-play-svg-hover);
+            }
+            .fg {
+              fill: var(--fg-play-svg-hover);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Part of speech list
+  .part-of-speech-list {
+    display: grid;
+    gap: var(--size-32px-40px-40px);
+    margin-block-start: var(--pad-sect-md);
+    list-style-type: none;
+
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-cont-lg);
+      font: var(--font-2);
+
+      .line {
+        display: inline-block;
+        height: var(--bw-md);
+        width: 100%;
+        background-color: var(--bc-divider-body);
+      }
+    }
+
+    .details {
+      display: grid;
+      gap: var(--size-24px-36px-60px);
+      margin-block-start: var(--size-32px-40px-40px);
+
+      h4 {
+        font: var(--font-5);
+        color: var(--fg-text-muted);
+      }
+
+      // Definitions
+      .definitions-list {
+        display: grid;
+        gap: var(--space-cont-sm);
+        list-style-type: none;
+        margin-block-start: var(--space-cont-xl);
+
+        li {
+          display: grid;
+          gap: var(--space-cont-lg);
+          grid-template-columns: auto 1fr;
+
+          &::before {
+            content: "";
+            width: 0.3125rem;
+            aspect-ratio: 1;
+            border-radius: var(--br-round);
+            background-color: var(--clr-brand-primary-600);
+            margin-block-start: var(--space-cont-xs);
+            margin-inline-start: var(--pad-cont-xs);
+          }
+        }
+      }
+
+      // Synonyms + Antonyms
+      .synonyms,
+      .antonyms {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: var(--space-cont-xl);
+
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-cont-md);
+          list-style-type: none;
+
+          a {
+            position: relative;
+            font: var(--font-4);
+            color: var(--fg-text-accent);
+            text-decoration: none;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 100%;
+              bottom: 0;
+              height: var(--bw-md);
+              background-color: currentColor;
+              transform: scaleX(0);
+              transform-origin: left center;
+              transition: transform var(--trans-default-sensitive);
+            }
+
+            @media (hover: hover) {
+              &:hover {
+                &::before {
+                  transform: scaleX(1);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Example
+      .example {
+        p {
+          margin-block-start: var(--space-cont-xl);
+          padding-inline-start: var(--size-25px-25px-47px);
+        }
+      }
+    }
+  }
+
+  // Source footer
+  .source-footer {
+    margin-block-start: var(--pad-sect-lg);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: var(--space-cont-2xs);
+    column-gap: var(--space-cont-lg);
+    border-top: var(--border-divider-body);
+    padding-block-start: var(--size-32px-20px-20px);
+
+    p {
+      font: var(--font-9);
+      color: var(--fg-text-muted);
+      text-decoration: underline;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-cont-xs);
+
+      a {
+        font: var(--font-9);
+        color: var(--fg-text-default);
+        transition: color var(--trans-default);
+
+        @media (hover: hover) {
+          &:hover {
+            color: var(--fg-text-accent);
+          }
+        }
+      }
+
+      svg {
+        width: var(--size-svg-new-window);
+      }
+    }
+  }
+</style>
