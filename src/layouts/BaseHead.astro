@@ -34,8 +34,14 @@ const siteUrl = import.meta.env.SITE;
   <script is:inline>
     // add js class to HTML
     document.documentElement.classList.add("js");
-    // Set Light/Dark mode
+
     (() => {
+      // Set Font
+      const storedFont = localStorage.getItem("font-preference");
+      const font = storedFont ?? "sans";
+      document.documentElement.dataset.font = font;
+
+      // Set Light/Dark mode
       const stored = localStorage.getItem("theme-preference");
       const system = window.matchMedia("(prefers-color-scheme: dark)").matches;
       const theme = stored ?? (system ? "dark" : "light");
