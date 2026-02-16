@@ -3,8 +3,12 @@
 
 :root {
   // Theme-switch
-
   @each $property, $value in $theme-switch-appearance {
     --theme-switch-#{$property}: #{$value};
+  }
+
+  // Searchbar
+  @each $property, $value in $searchbar-appearance {
+    --searchbar-#{$property}: #{$value};
   }
 }

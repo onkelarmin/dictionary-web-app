@@ -5,6 +5,10 @@ import { sitePages } from "@/data/siteData";
 // Layout import
 import MainLayout from "@layouts/MainLayout.astro";
 
+// Component imports
+import Searchbar from "@/components/ui/Searchbar.astro";
+import Wrapper from "@/components/utilities/Wrapper.astro";
+
 const page = sitePages.home;
 ---
 
@@ -13,5 +17,7 @@ const page = sitePages.home;
   description={page.description}
   ogImage={page.ogImage}
 >
-  Main
+  <Wrapper>
+    <Searchbar />
+  </Wrapper>
 </MainLayout>

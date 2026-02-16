@@ -28,3 +28,38 @@ $theme-switch-appearance: (
   border-radius: 1000vw,
   gap: bp(10px, 20px, 20px),
 );
+
+// Searchbar
+$searchbar-colors: (
+  bg: (
+    light: "neutral-100",
+    dark: "neutral-900",
+  ),
+  text: (
+    light: "neutral-800",
+    dark: "neutral-000",
+  ),
+  caret: (
+    light: "brand-500",
+    dark: "brand-500",
+  ),
+  border-idle: (
+    light: "transparent",
+    dark: "transparent",
+  ),
+  border-active: (
+    light: "brand-500",
+    dark: "brand-500",
+  ),
+  border-error: (
+    light: "accent-red-500",
+    dark: "accent-red-500",
+  ),
+);
+
+$searchbar-appearance: (
+  border-radius: var(--br-md),
+  border-width: rem(1px),
+  padding-inline: rem(24px),
+  padding-block: bp(15px, 20px, 20px),
+);

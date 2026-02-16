@@ -1,0 +1,72 @@
+---
+// Asset imports
+import SearchSvg from "@assets/icon-search.svg";
+---
+
+<form id="searchbar-from" role="search">
+  <label>
+    <span class="visually-hidden">Search for a word</span>
+    <SearchSvg class="search-svg" aria-hidden="true" />
+    <input
+      type="search"
+      name="search"
+      id="searchbar-input"
+      placeholder="Search for any word…"
+    />
+  </label>
+</form>
+
+<style lang="scss">
+  form {
+    margin-block-start: var(--size-24px-58px-58px);
+  }
+
+  label {
+    display: grid;
+    align-items: center;
+    position: relative;
+  }
+
+  .search-svg {
+    width: var(--size-svg-search);
+    position: absolute;
+    right: var(--searchbar-padding-inline);
+  }
+
+  input {
+    width: 100%;
+    font: var(--font-4);
+    background-color: var(--searchbar-bg-color);
+    color: var(--searchbar-text-color);
+    caret-color: var(--searchbar-caret-color);
+    border-radius: var(--searchbar-border-radius);
+    border: var(--searchbar-border-width) solid
+      var(--searchbar-border-idle-color);
+    padding-inline-start: var(--searchbar-padding-inline);
+    padding-inline-end: calc(
+      var(--searchbar-padding-inline) + var(--size-svg-search) + var(--size-4)
+    );
+    padding-block: var(--searchbar-padding-block);
+    transition: border-color var(--trans-default);
+
+    &::-webkit-search-cancel-button {
+      display: none;
+      appearance: none;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        border-color: var(--searchbar-border-active-color);
+      }
+    }
+
+    &:focus-visible {
+      border-color: var(--searchbar-border-active-color);
+      outline: none;
+    }
+
+    &:invalid {
+      border-color: var(--searchbar-border-error-color);
+    }
+  }
+</style>

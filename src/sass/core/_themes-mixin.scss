@@ -94,6 +94,14 @@
       }
     }
   }
+  // Searchbar
+  @each $property, $mode-map in $searchbar-colors {
+    @each $mode, $value in $mode-map {
+      @if $mode == $theme {
+        --searchbar-#{$property}-color: var(--clr-#{$value});
+      }
+    }
+  }
 
   // Color-scheme
   color-scheme: #{$theme};
