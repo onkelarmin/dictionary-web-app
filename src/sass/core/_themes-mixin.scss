@@ -98,7 +98,18 @@
   @each $property, $mode-map in $searchbar-colors {
     @each $mode, $value in $mode-map {
       @if $mode == $theme {
-        --searchbar-#{$property}-color: var(--clr-#{$value});
+        @if meta.type-of($value) == list {
+          // account for opacity
+          --searchbar-#{$property}-color: oklch(
+            from var(--clr-#{list.nth($value, 1)})
+              l
+              c
+              h /
+              #{list.nth($value, 2)}
+          );
+        } @else {
+          --searchbar-#{$property}-color: var(--clr-#{$value});
+        }
       }
     }
   }

@@ -54,6 +54,10 @@ import SearchSvg from "@assets/icon-search.svg";
       appearance: none;
     }
 
+    &::placeholder {
+      color: var(--searchbar-placeholder-color);
+    }
+
     @media (hover: hover) {
       &:hover {
         border-color: var(--searchbar-border-active-color);

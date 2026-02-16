@@ -39,6 +39,10 @@ $searchbar-colors: (
     light: "neutral-800",
     dark: "neutral-000",
   ),
+  placeholder: (
+    light: "neutral-800" 0.25,
+    dark: "neutral-000" 0.25,
+  ),
   caret: (
     light: "brand-500",
     dark: "brand-500",
