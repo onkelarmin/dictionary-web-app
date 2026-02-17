@@ -4,11 +4,13 @@ export function initFontSelector() {
     "#font-popover-toggle .current",
   );
   const popoverMenu = document.querySelector<HTMLElement>("#font-popover-menu");
-  const popoverButtons = Array.from(
-    document.querySelectorAll<HTMLButtonElement>("#font-popover-menu button"),
+  const radioInputs = Array.from(
+    document.querySelectorAll<HTMLInputElement>(
+      '#font-popover-menu input[type="radio"]',
+    ),
   );
 
-  if (!popoverToggleSpan || !popoverMenu || popoverButtons.length === 0)
+  if (!popoverToggleSpan || !popoverMenu || radioInputs.length === 0)
     throw new Error("Font selector DOM structure missing");
 
   const storageKey = "font-preference";
@@ -27,6 +29,13 @@ export function initFontSelector() {
     mono: "Mono",
   };
 
+  const updateUI = () => {
+    root.dataset.font = font;
+    updatePopoverToggle();
+    checkRadioInput();
+    popoverMenu.hidePopover();
+  };
+
   const updatePopoverToggle = () => {
     const fontLabel = fontLabels[font];
     popoverToggleSpan.textContent = fontLabel;
@@ -34,24 +43,31 @@ export function initFontSelector() {
   const setLocalStorage = () => {
     localStorage.setItem(storageKey, font);
   };
+  const checkRadioInput = () => {
+    radioInputs.forEach((input) => {
+      input.checked = input.value === font;
+    });
+  };
 
-  popoverButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const newFont = button.dataset.font as Font | undefined;
+  popoverMenu.addEventListener("change", (e) => {
+    const target = e.target;
 
-      if (!newFont) throw new Error("Button misses data-font attribute");
+    if (!(target instanceof HTMLInputElement)) return;
 
-      font = newFont;
+    font = target.value as Font;
 
-      root.dataset.font = font;
+    setLocalStorage();
 
-      updatePopoverToggle();
+    if (!document.startViewTransition) {
+      updateUI();
+      return;
+    }
 
-      popoverMenu.hidePopover();
-
-      setLocalStorage();
+    document.startViewTransition(() => {
+      updateUI();
     });
   });
 
   updatePopoverToggle();
+  checkRadioInput();
 }

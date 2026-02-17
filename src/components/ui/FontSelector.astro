@@ -15,14 +15,19 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
     <ArrowSvg class="arrow-svg" aria-hidden="true" />
   </button>
 
-  <div id="font-popover-menu" popover>
-    <ul>
-      <li>
-        <button type="button" data-font="sans">Sans Serif</button>
-      </li>
-      <li><button type="button" data-font="serif">Serif</button></li>
-      <li><button type="button" data-font="mono">Mono</button></li>
-    </ul>
+  <div id="font-popover-menu" role="radiogroup" popover>
+    <label>
+      <input type="radio" name="font" value="sans" class="visually-hidden" />
+      <span>Sans Serif</span>
+    </label>
+    <label>
+      <input type="radio" name="font" value="serif" class="visually-hidden" />
+      <span>Serif</span>
+    </label>
+    <label>
+      <input type="radio" name="font" value="mono" class="visually-hidden" />
+      <span>Mono</span>
+    </label>
   </div>
 </div>
 
@@ -88,6 +93,8 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
 
   //   Menu
   #font-popover-menu {
+    display: grid;
+    gap: var(--space-cont-md);
     width: var(--size-122px-183px-183px);
     background-color: var(--bg-container-dropdown);
     border: none;
@@ -118,38 +125,35 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
       }
     }
 
-    ul {
-      list-style: none;
-      display: grid;
-      gap: var(--space-cont-md);
-    }
-
-    button {
-      width: 100%;
-      text-align: start;
+    label {
       font: var(--font-6);
-      background: none;
-      border: none;
+      cursor: pointer;
       transition: color var(--trans-default);
 
-      &[data-font="serif"] {
+      &:has(input[value="serif"]) {
         font-family: var(--ff-serif);
       }
-      &[data-font="sans"] {
+      &:has(input[value="sans"]) {
         font-family: var(--ff-sans);
       }
-      &[data-font="mono"] {
+      &:has(input[value="mono"]) {
         font-family: var(--ff-mono);
       }
 
-      &:not(:disabled) {
-        cursor: pointer;
+      &:has(input:checked) {
+        color: var(--fg-text-accent);
+        cursor: default;
       }
 
       @media (hover: hover) {
         &:hover {
           color: var(--fg-text-accent);
         }
+      }
+
+      &:has(input:focus-visible) {
+        outline: var(--border-default-focus);
+        outline-offset: var(--offset-default-focus);
       }
     }
   }
