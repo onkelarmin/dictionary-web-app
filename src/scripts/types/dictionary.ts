@@ -22,6 +22,7 @@ export type ApiEntry = {
   phonetic: string;
   phonetics: ApiPhonetic[];
   meanings: ApiMeaning[];
+  sourceUrls: string[];
 };
 
 export type ApiResponse = ApiEntry[];
@@ -45,4 +46,5 @@ export type WordData = {
   phonetic?: string;
   audio?: string;
   meanings: Meaning[];
+  source: string;
 };

@@ -10,10 +10,6 @@
   font: inherit;
 }
 
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
 body {
   min-height: 100svh;
 }
@@ -26,10 +22,4 @@ video {
   vertical-align: middle;
   font-style: italic;
   shape-margin: 1rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
 }

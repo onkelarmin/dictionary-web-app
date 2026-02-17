@@ -24,8 +24,8 @@ const page = sitePages.home;
 
     <template id="word-header-template">
       <header class="word-header">
-        <h2 class="word">keyboard</h2>
-        <p class="phonetic">/ˈkiːbɔːd/</p>
+        <h2 class="word"></h2>
+        <p class="phonetic"></p>
         <button type="button" class="audio-button">
           <span class="visually-hidden">Play pronunciation</span>
           <svg
@@ -44,89 +44,59 @@ const page = sitePages.home;
     </template>
 
     <template id="details-template">
-      <ul class="part-of-speech-list">
-        <li class="part-of-speech">
-          <h3>noun<span class="line" aria-hidden="true"></span></h3>
+      <ul class="meaning-list"></ul>
+    </template>
 
-          <div class="details">
-            <!-- Definitions -->
-            <section class="definitions">
-              <h4>Meaning</h4>
-              <ul class="definitions-list">
-                <li>
-                  <div class="definition-group">
-                    <p class="definition">
-                      (etc.) A set of keys used to operate a typewriter,
-                      computer etc.
-                    </p>
-                    <p class="example">
-                      "Keyboarding is the part of this job I hate the most."
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div class="definition-group">
-                    <p class="definition">
-                      A component of many instruments including the piano,
-                      organ, and harpsichord consisting of usually black and
-                      white keys that cause different tones to be produced when
-                      struck.
-                    </p>
-                    <p class="example">
-                      "Keyboarding is the part of this job I hate the most."
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div class="definition-group">
-                    <p class="definition">
-                      A device with keys of a musical keyboard, used to control
-                      electronic sound-producing devices which may be built into
-                      or separate from the keyboard device.
-                    </p>
-                    <p class="example">
-                      "Keyboarding is the part of this job I hate the most."
-                    </p>
-                  </div>
-                </li>
-              </ul>
-            </section>
+    <template id="meaning-list-item-template">
+      <li class="meaning-list-item">
+        <h3 class="meaning-title">
+          <span class="text"></span>
+          <span class="line" aria-hidden="true"></span>
+        </h3>
 
-            <!-- Synonyms -->
-            <section class="synonyms">
-              <h4>Synonyms</h4>
-              <ul class="synonyms-list">
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-              </ul>
-            </section>
+        <div class="details">
+          <section class="definitions">
+            <h4>Meaning</h4>
+            <ul class="definitions-list"></ul>
+          </section>
+        </div>
+      </li>
+    </template>
 
-            <!-- Antonyms -->
-            <section class="antonyms">
-              <h4>Antonyms</h4>
-              <ul class="antonyms-list">
-                <li><a href="#">electronic keyboard</a></li>
-                <li><a href="#">electronic keyboard</a></li>
-              </ul>
-            </section>
-          </div>
-        </li>
-      </ul>
+    <template id="definitions-list-item-template">
+      <li>
+        <div class="definition-group">
+          <p class="definition"></p>
+          <p class="example"></p>
+        </div>
+      </li>
+    </template>
+
+    <template id="synonyms-template">
+      <section class="synonyms">
+        <h4>Synonyms</h4>
+        <ul class="synonyms-list"></ul>
+      </section>
+    </template>
+
+    <template id="antonyms-template">
+      <section class="antonyms">
+        <h4>Antonyms</h4>
+        <ul class="antonyms-list"></ul>
+      </section>
+    </template>
+
+    <template id="flex-list-item-template">
+      <li>
+        <button type="button"></button>
+      </li>
     </template>
 
     <template id="source-template">
       <footer class="source-footer">
         <p>Source</p>
         <div class="link">
-          <a href="#">https://en.wiktionary.org/wiki/keyboard</a>
+          <a href="" target="_blank"></a>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"
             ><path
               fill="none"
@@ -171,6 +141,10 @@ const page = sitePages.home;
       cursor: pointer;
       border-radius: var(--br-round);
 
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+
       .play-svg {
         width: var(--size-svg-play);
 
@@ -196,11 +170,25 @@ const page = sitePages.home;
           }
         }
       }
+
+      &:disabled {
+        cursor: not-allowed;
+        pointer-events: none;
+
+        .play-svg {
+          .bg {
+            fill: var(--bg-play-svg-disabled);
+          }
+          .fg {
+            fill: var(--fg-play-svg-disabled);
+          }
+        }
+      }
     }
   }
 
   // Part of speech list
-  .part-of-speech-list {
+  .meaning-list {
     display: grid;
     gap: var(--size-32px-40px-40px);
     margin-block-start: var(--pad-sect-md);
@@ -237,7 +225,7 @@ const page = sitePages.home;
         list-style-type: none;
         margin-block-start: var(--space-cont-xl);
 
-        li {
+        > li {
           display: grid;
           gap: var(--space-cont-lg);
           grid-template-columns: auto 1fr;
@@ -276,11 +264,13 @@ const page = sitePages.home;
           gap: var(--space-cont-md);
           list-style-type: none;
 
-          a {
+          button {
             position: relative;
             font: var(--font-4);
             color: var(--fg-text-accent);
-            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
 
             &::before {
               content: "";

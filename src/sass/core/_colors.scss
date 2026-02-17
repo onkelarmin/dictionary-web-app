@@ -74,6 +74,10 @@ $background-colors: (
       light: "brand-500",
       dark: "brand-500",
     ),
+    disabled: (
+      light: "neutral-200",
+      dark: "neutral-700",
+    ),
   ),
 );
 
@@ -109,6 +113,10 @@ $foreground-colors: (
     hover: (
       light: "neutral-000",
       dark: "neutral-000",
+    ),
+    disabled: (
+      light: "neutral-500",
+      dark: "neutral-500",
     ),
   ),
 );
