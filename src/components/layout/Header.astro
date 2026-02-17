@@ -24,7 +24,20 @@ import ThemeSwitch from "../ui/ThemeSwitch.astro";
 
 <style lang="scss">
   header {
-    margin-block-start: var(--pad-page-block-start);
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    background-color: var(--bg-container-header);
+    padding-block-start: var(--pad-page-block-start);
+    padding-block-end: calc(var(--pad-sect-sm) / 2);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      backdrop-filter: blur(16px);
+    }
   }
 
   .layout {

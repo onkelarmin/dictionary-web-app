@@ -46,6 +46,10 @@ $background-colors: (
     ),
   ),
   container: (
+    header: (
+      light: "neutral-000" 0.6,
+      dark: "neutral-950" 0.6,
+    ),
     dropdown: (
       light: "neutral-000",
       dark: "neutral-900",
