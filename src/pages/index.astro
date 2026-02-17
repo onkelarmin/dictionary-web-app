@@ -22,105 +22,124 @@ const page = sitePages.home;
     <Searchbar />
     <div id="results"></div>
 
-    <template id="word-header-template"> </template>
-    <template id="details-template"></template>
-    <template id="source-template"></template>
+    <template id="word-header-template">
+      <header class="word-header">
+        <h2 class="word">keyboard</h2>
+        <p class="phonetic">/ˈkiːbɔːd/</p>
+        <button type="button" class="audio-button">
+          <span class="visually-hidden">Play pronunciation</span>
+          <svg
+            class="play-svg"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 75 75"
+            ><g fill-rule="evenodd"
+              ><circle class="bg" cx="37.5" cy="37.5" r="37.5"></circle><path
+                class="fg"
+                d="M29 27v21l21-10.5z"></path></g
+            ></svg
+          >
+        </button>
+      </header>
+    </template>
 
-    <header class="word-header">
-      <h2 class="word">keyboard</h2>
-      <p class="phonetic">/ˈkiːbɔːd/</p>
-      <button type="button" class="audio-button">
-        <span class="visually-hidden">Play pronunciation</span>
-        <svg
-          class="play-svg"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 75 75"
-          ><g fill-rule="evenodd"
-            ><circle class="bg" cx="37.5" cy="37.5" r="37.5"></circle><path
-              class="fg"
-              d="M29 27v21l21-10.5z"></path></g
-          ></svg
-        >
-      </button>
-    </header>
+    <template id="details-template">
+      <ul class="part-of-speech-list">
+        <li class="part-of-speech">
+          <h3>noun<span class="line" aria-hidden="true"></span></h3>
 
-    <ul class="part-of-speech-list">
-      <li class="part-of-speech">
-        <h3>noun<span class="line" aria-hidden="true"></span></h3>
+          <div class="details">
+            <!-- Definitions -->
+            <section class="definitions">
+              <h4>Meaning</h4>
+              <ul class="definitions-list">
+                <li>
+                  <div class="definition-group">
+                    <p class="definition">
+                      (etc.) A set of keys used to operate a typewriter,
+                      computer etc.
+                    </p>
+                    <p class="example">
+                      "Keyboarding is the part of this job I hate the most."
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="definition-group">
+                    <p class="definition">
+                      A component of many instruments including the piano,
+                      organ, and harpsichord consisting of usually black and
+                      white keys that cause different tones to be produced when
+                      struck.
+                    </p>
+                    <p class="example">
+                      "Keyboarding is the part of this job I hate the most."
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="definition-group">
+                    <p class="definition">
+                      A device with keys of a musical keyboard, used to control
+                      electronic sound-producing devices which may be built into
+                      or separate from the keyboard device.
+                    </p>
+                    <p class="example">
+                      "Keyboarding is the part of this job I hate the most."
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </section>
 
-        <div class="details">
-          <!-- Definitions -->
-          <section class="definitions">
-            <h4>Meaning</h4>
-            <ul class="definitions-list">
-              <li>
-                (etc.) A set of keys used to operate a typewriter, computer etc.
-              </li>
-              <li>
-                A component of many instruments including the piano, organ, and
-                harpsichord consisting of usually black and white keys that
-                cause different tones to be produced when struck.
-              </li>
-              <li>
-                A device with keys of a musical keyboard, used to control
-                electronic sound-producing devices which may be built into or
-                separate from the keyboard device.
-              </li>
-            </ul>
-          </section>
+            <!-- Synonyms -->
+            <section class="synonyms">
+              <h4>Synonyms</h4>
+              <ul class="synonyms-list">
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+              </ul>
+            </section>
 
-          <!-- Synonyms -->
-          <section class="synonyms">
-            <h4>Synonyms</h4>
-            <ul class="synonyms-list">
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-            </ul>
-          </section>
+            <!-- Antonyms -->
+            <section class="antonyms">
+              <h4>Antonyms</h4>
+              <ul class="antonyms-list">
+                <li><a href="#">electronic keyboard</a></li>
+                <li><a href="#">electronic keyboard</a></li>
+              </ul>
+            </section>
+          </div>
+        </li>
+      </ul>
+    </template>
 
-          <!-- Antonyms -->
-          <section class="antonyms">
-            <h4>Antonyms</h4>
-            <ul class="antonyms-list">
-              <li><a href="#">electronic keyboard</a></li>
-              <li><a href="#">electronic keyboard</a></li>
-            </ul>
-          </section>
-
-          <!-- Example -->
-          <section class="example">
-            <h4>Example</h4>
-            <p>"Keyboarding is the part of this job I hate the most."</p>
-          </section>
+    <template id="source-template">
+      <footer class="source-footer">
+        <p>Source</p>
+        <div class="link">
+          <a href="#">https://en.wiktionary.org/wiki/keyboard</a>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"
+            ><path
+              fill="none"
+              stroke="#838383"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
+            ></path></svg
+          >
         </div>
-      </li>
-    </ul>
-
-    <footer class="source-footer">
-      <p>Source</p>
-      <div class="link">
-        <a href="#">https://en.wiktionary.org/wiki/keyboard</a>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"
-          ><path
-            fill="none"
-            stroke="#838383"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
-          ></path></svg
-        >
-      </div>
-    </footer>
+      </footer>
+    </template>
   </Wrapper>
 </MainLayout>
 
@@ -232,6 +251,15 @@ const page = sitePages.home;
             margin-block-start: var(--space-cont-xs);
             margin-inline-start: var(--pad-cont-xs);
           }
+
+          .definition-group {
+            display: grid;
+            gap: var(--space-cont-sm);
+          }
+
+          .example {
+            color: var(--fg-text-muted);
+          }
         }
       }
 
@@ -274,14 +302,6 @@ const page = sitePages.home;
               }
             }
           }
-        }
-      }
-
-      // Example
-      .example {
-        p {
-          margin-block-start: var(--space-cont-xl);
-          padding-inline-start: var(--size-25px-25px-47px);
         }
       }
     }

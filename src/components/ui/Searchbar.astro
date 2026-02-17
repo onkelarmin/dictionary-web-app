@@ -6,7 +6,10 @@ import SearchSvg from "@assets/icon-search.svg";
 <form id="searchbar-from" role="search">
   <label>
     <span class="visually-hidden">Search for a word</span>
-    <SearchSvg class="search-svg" aria-hidden="true" />
+    <button class="submit-button" type="submit">
+      <span class="visually-hidden">Search</span>
+      <SearchSvg class="search-svg" aria-hidden="true" />
+    </button>
     <input
       type="search"
       name="search"
@@ -22,15 +25,25 @@ import SearchSvg from "@assets/icon-search.svg";
   }
 
   label {
+    --button-padding: var(--size-4);
+
     display: grid;
     align-items: center;
     position: relative;
   }
 
+  .submit-button {
+    position: absolute;
+    right: calc(var(--searchbar-padding-inline) - var(--button-padding));
+    display: grid;
+    width: fit-content;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--button-padding);
+  }
   .search-svg {
     width: var(--size-svg-search);
-    position: absolute;
-    right: var(--searchbar-padding-inline);
   }
 
   input {
@@ -44,7 +57,8 @@ import SearchSvg from "@assets/icon-search.svg";
       var(--searchbar-border-idle-color);
     padding-inline-start: var(--searchbar-padding-inline);
     padding-inline-end: calc(
-      var(--searchbar-padding-inline) + var(--size-svg-search) + var(--size-4)
+      var(--searchbar-padding-inline) + var(--size-svg-search) +
+        var(--button-padding)
     );
     padding-block: var(--searchbar-padding-block);
     transition: border-color var(--trans-default);
