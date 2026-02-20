@@ -110,6 +110,14 @@ const page = sitePages.home;
         </div>
       </footer>
     </template>
+
+    <template id="not-found-template">
+      <section class="not-found" aria-live="polite">
+        <p class="emoji" aria-hidden="true">😕</p>
+        <p class="message"></p>
+        <p class="resolution"></p>
+      </section>
+    </template>
   </Wrapper>
 </MainLayout>
 
@@ -334,6 +342,27 @@ const page = sitePages.home;
       svg {
         width: var(--size-svg-new-window);
       }
+    }
+  }
+
+  // Not found
+  .not-found {
+    text-align: center;
+    margin-block-start: var(--pad-sect-xl);
+
+    .emoji {
+      font-size: var(--size-svg-not-found-emoji);
+    }
+
+    .message {
+      font: var(--font-4);
+      margin-block-start: var(--size-24px-48px-48px);
+    }
+
+    .resolution {
+      font: var(--font-7);
+      color: var(--fg-text-muted);
+      margin-block-start: var(--space-cont-lg);
     }
   }
 </style>

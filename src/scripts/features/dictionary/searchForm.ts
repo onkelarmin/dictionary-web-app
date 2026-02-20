@@ -1,9 +1,10 @@
 import { ActionInputError, actions, isInputError } from "astro:actions";
 import { transformDictionaryData } from "./transformDictionaryData";
 import { renderResults } from "./renderResults";
-import type { ActionResponse, ApiResponse } from "@/types/dictionary";
+import type { ActionResponse } from "@/types/dictionary";
 import { searchSchema } from "@/schemas/search";
 import type { ZodError, ZodIssue } from "astro:schema";
+import { renderNotFound } from "./renderNotFound";
 
 export function initSearchForm() {
   const form = document.querySelector<HTMLFormElement>("#searchbar-from");
@@ -160,13 +161,18 @@ export function initSearchForm() {
         handleErrors(error);
       } else {
         console.error("Action failed:", error.message);
-        console.log(error);
       }
     }
     if (data) {
-      const apiResponse: ActionResponse = data;
-      // const wordData = transformDictionaryData(apiResponse.payload[0]);
-      // renderResults(wordData);
+      const actionResponse: ActionResponse = data;
+
+      if (actionResponse.status === "not_found") {
+        const { message, resolution } = actionResponse.payload;
+        renderNotFound(message, resolution);
+      } else {
+        const wordData = transformDictionaryData(actionResponse.payload[0]);
+        renderResults(wordData);
+      }
     }
   });
 }
