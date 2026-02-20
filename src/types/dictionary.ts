@@ -19,13 +19,27 @@ export type ApiMeaning = {
 
 export type ApiEntry = {
   word: string;
-  phonetic: string;
+  phonetic?: string;
   phonetics: ApiPhonetic[];
   meanings: ApiMeaning[];
-  sourceUrls: string[];
+  sourceUrls?: string[];
 };
 
 export type ApiResponse = ApiEntry[];
+
+export type DictionarySuccess = ApiResponse;
+export type DictionaryNotFound = {
+  title: string;
+  message: string;
+  resolution: string;
+};
+
+export type ActionResponse =
+  | { status: "not_found"; payload: DictionaryNotFound }
+  | {
+      status: "success";
+      payload: DictionarySuccess;
+    };
 
 // Internal App
 

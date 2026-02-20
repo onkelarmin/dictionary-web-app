@@ -1,4 +1,4 @@
-import type { ApiEntry, WordData } from "@/scripts/types/dictionary";
+import type { ApiEntry, WordData } from "@/types/dictionary";
 
 export function transformDictionaryData(apiData: ApiEntry): WordData {
   return {

@@ -3,19 +3,23 @@
 import SearchSvg from "@assets/icon-search.svg";
 ---
 
-<form id="searchbar-from" role="search">
+<form id="searchbar-from" role="search" novalidate>
   <label>
     <span class="visually-hidden">Search for a word</span>
-    <button class="submit-button" type="submit">
-      <span class="visually-hidden">Search</span>
-      <SearchSvg class="search-svg" aria-hidden="true" />
-    </button>
     <input
       type="search"
       name="search"
       id="searchbar-input"
       placeholder="Search for any word…"
+      inputmode="search"
+      required
+      minlength="1"
     />
+    <p id="search-error" class="error" aria-live="polite"></p>
+    <button class="submit-button" type="submit">
+      <span class="visually-hidden">Search</span>
+      <SearchSvg class="search-svg" aria-hidden="true" />
+    </button>
   </label>
 </form>
 
@@ -83,8 +87,22 @@ import SearchSvg from "@assets/icon-search.svg";
       outline: none;
     }
 
-    &:invalid {
+    &[aria-invalid="true"] {
       border-color: var(--searchbar-border-error-color);
+
+      + .error {
+        display: block;
+      }
     }
+  }
+
+  .error {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font: var(--font-5);
+    color: var(--searchbar-error-message-color);
+    transform: translateY(calc(100% + var(--space-cont-2xs)));
   }
 </style>

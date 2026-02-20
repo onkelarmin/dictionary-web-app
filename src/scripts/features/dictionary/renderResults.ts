@@ -1,4 +1,4 @@
-import type { Definition, Meaning, WordData } from "@/scripts/types/dictionary";
+import type { Definition, Meaning, WordData } from "@/types/dictionary";
 import { getLenis } from "../scroll/lenis";
 
 export function renderResults(wordData: WordData) {
