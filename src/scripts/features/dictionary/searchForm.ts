@@ -5,10 +5,19 @@ import type { ActionResponse } from "@/types/dictionary";
 import { searchSchema } from "@/schemas/search";
 import type { ZodError, ZodIssue } from "astro:schema";
 import { renderNotFound } from "./renderNotFound";
+import { renderGlobalError } from "./renderGlobalError";
 
 export function initSearchForm() {
   const form = document.querySelector<HTMLFormElement>("#searchbar-from");
-  if (!form) throw new Error("Form element missing");
+
+  if (!form) {
+    if (import.meta.env.DEV) {
+      throw new Error("Required DOM element missing");
+    }
+    console.error("Required DOM element missing");
+    return;
+  }
+
   const formInputs = form.querySelectorAll<HTMLInputElement>("input");
 
   const schema = searchSchema;
@@ -160,7 +169,7 @@ export function initSearchForm() {
       if (isInputError(error)) {
         handleErrors(error);
       } else {
-        console.error("Action failed:", error.message);
+        renderGlobalError(error.message);
       }
     }
     if (data) {

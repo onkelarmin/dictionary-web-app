@@ -1,10 +1,11 @@
-export function renderNotFound(message: string, resolution: string) {
+export function renderGlobalError(message: string) {
   const results = document.querySelector<HTMLElement>("#results");
-  const notFoundTemplate = document.querySelector<HTMLTemplateElement>(
-    "#not-found-template",
+
+  const globalErrorTemplate = document.querySelector<HTMLTemplateElement>(
+    "#global-error-template",
   );
 
-  if (!results || !notFoundTemplate) {
+  if (!results || !globalErrorTemplate) {
     if (import.meta.env.DEV) {
       throw new Error("Required DOM element missing");
     }
@@ -14,13 +15,11 @@ export function renderNotFound(message: string, resolution: string) {
 
   results.replaceChildren();
 
-  const clone = notFoundTemplate.content.cloneNode(true) as DocumentFragment;
+  const clone = globalErrorTemplate.content.cloneNode(true) as DocumentFragment;
 
   const messageElement = clone.querySelector<HTMLParagraphElement>(".message");
-  const resolutionElement =
-    clone.querySelector<HTMLParagraphElement>(".resolution");
 
-  if (!messageElement || !resolutionElement) {
+  if (!messageElement) {
     if (import.meta.env.DEV) {
       throw new Error("Required DOM element missing");
     }
@@ -29,7 +28,6 @@ export function renderNotFound(message: string, resolution: string) {
   }
 
   messageElement.textContent = message;
-  resolutionElement.textContent = resolution;
 
   results.appendChild(clone);
 }

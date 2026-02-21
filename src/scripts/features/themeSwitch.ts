@@ -4,7 +4,13 @@ export function initThemeSwitch() {
     ".theme-switch > input",
   );
 
-  if (!themeSwitch) throw new Error("Theme switch missing in DOM");
+  if (!themeSwitch) {
+    if (import.meta.env.DEV) {
+      throw new Error("Required DOM element missing");
+    }
+    console.error("Required DOM element missing");
+    return;
+  }
 
   const storageKey = "theme-preference";
 

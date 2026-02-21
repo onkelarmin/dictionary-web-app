@@ -1,10 +1,8 @@
-import { searchSchema } from "@/schemas/search";
-import type {
-  ActionResponse,
-  ApiResponse,
-  DictionaryNotFound,
-  DictionarySuccess,
-} from "@/types/dictionary";
+import {
+  apiNotFoundSchema,
+  apiSuccessSchema,
+  searchSchema,
+} from "@/schemas/search";
 import { ActionError, defineAction } from "astro:actions";
 
 export const server = {
@@ -33,10 +31,17 @@ export const server = {
 
       if (!res.ok) {
         if (res.status === 404) {
-          return {
-            status: "not_found" as const,
-            payload: json as DictionaryNotFound,
-          };
+          const result = apiNotFoundSchema.safeParse(json);
+          if (!result.success) {
+            throw new ActionError({
+              code: "BAD_GATEWAY",
+              message: "Unexpected 404 response shape from dictionary API",
+            });
+          } else
+            return {
+              status: "not_found" as const,
+              payload: result.data,
+            };
         }
 
         throw new ActionError({
@@ -45,10 +50,17 @@ export const server = {
         });
       }
 
-      return {
-        status: "success" as const,
-        payload: json as DictionarySuccess,
-      };
+      const result = apiSuccessSchema.safeParse(json);
+      if (!result.success) {
+        throw new ActionError({
+          code: "BAD_GATEWAY",
+          message: "Unexpected response shape from dictionary API",
+        });
+      } else
+        return {
+          status: "success" as const,
+          payload: result.data,
+        };
     },
   }),
 };

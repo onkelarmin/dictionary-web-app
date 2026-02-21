@@ -4,9 +4,13 @@ export function initTriggerResearch() {
   const searchInputField =
     document.querySelector<HTMLInputElement>("#searchbar-input");
 
-  if (!results) throw new Error("Results element is missing");
-  if (!searchForm || !searchInputField)
-    throw new Error("Searchbar elements missing");
+  if (!results || !searchForm || !searchInputField) {
+    if (import.meta.env.DEV) {
+      throw new Error("Required DOM element missing");
+    }
+    console.error("Required DOM element missing");
+    return;
+  }
 
   results.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;

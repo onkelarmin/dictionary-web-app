@@ -96,7 +96,14 @@ const page = sitePages.home;
       <footer class="source-footer">
         <p>Source</p>
         <div class="link">
-          <a href="" target="_blank"></a>
+          <a
+            href=""
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-describedby="new-tab-description"></a>
+          <span id="new-tab-description" class="visually-hidden"
+            >(opens in new tab)</span
+          >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"
             ><path
               fill="none"
@@ -112,10 +119,16 @@ const page = sitePages.home;
     </template>
 
     <template id="not-found-template">
-      <section class="not-found" aria-live="polite">
+      <section class="not-found" role="status">
         <p class="emoji" aria-hidden="true">😕</p>
         <p class="message"></p>
         <p class="resolution"></p>
+      </section>
+    </template>
+
+    <template id="global-error-template">
+      <section class="global-error" role="status">
+        <p class="message"></p>
       </section>
     </template>
   </Wrapper>
@@ -363,6 +376,16 @@ const page = sitePages.home;
       font: var(--font-7);
       color: var(--fg-text-muted);
       margin-block-start: var(--space-cont-lg);
+    }
+  }
+
+  // Global error
+  .global-error {
+    text-align: center;
+    margin-block-start: var(--pad-sect-xl);
+
+    .message {
+      font: var(--font-4);
     }
   }
 </style>
