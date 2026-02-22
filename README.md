@@ -33,8 +33,8 @@ Built as part of a Frontend Mentor challenge, this project focuses on robust val
 - Dedicated “Word Not Found” state
 - Global error handling for network and server failures
 - Accessible form validation with focus management
-- Theme switching (light / dark)
-- Font switching (serif / sans-serif / mono)
+- Theme switching (light / dark) and storing preference in localstorage
+- Font switching (serif / sans-serif / mono) and storing preference in localstorage
 - Responsive layout for all screen sizes
 - Smooth UI transitions
 
