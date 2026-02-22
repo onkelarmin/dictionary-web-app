@@ -8,9 +8,10 @@ import { ActionError, defineAction } from "astro:actions";
 export const server = {
   getData: defineAction({
     accept: "form",
-    // input: searchSchema,
+    input: searchSchema,
     handler: async (input) => {
-      const searchTerm = input.get("search");
+      console.log("Input received: ", input);
+      const searchTerm = input.search;
 
       const encodedTerm = encodeURIComponent(searchTerm);
 
