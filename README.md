@@ -89,4 +89,4 @@ https://fm-dictionary-web-app.netlify.app/
 
 ## Preview
 
-https://github.com/user-attachments/assets/1eca6f94-fed9-4a40-91f8-b2f9c082239d
+https://github.com/user-attachments/assets/2f4a471c-4442-488f-8871-55364599897d
