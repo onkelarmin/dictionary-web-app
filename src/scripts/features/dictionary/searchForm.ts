@@ -163,8 +163,9 @@ export function initSearchForm() {
     }
 
     // Server side
+    const searchTerm = String(formData.get("search") ?? "");
 
-    const { data, error } = await actions.getData(formData);
+    const { data, error } = await actions.getData({ search: searchTerm });
     if (error) {
       if (isInputError(error)) {
         handleErrors(error);
