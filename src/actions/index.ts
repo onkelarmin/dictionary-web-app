@@ -4,11 +4,14 @@ import {
   searchSchema,
 } from "@/schemas/search";
 import { ActionError, defineAction } from "astro:actions";
+import { z } from "astro:schema";
 
 export const server = {
   getData: defineAction({
     accept: "form",
-    input: searchSchema,
+    input: z.object({
+      search: z.string().min(1),
+    }),
     handler: async (input) => {
       console.log("Input received: ", input);
       const searchTerm = input.search;
