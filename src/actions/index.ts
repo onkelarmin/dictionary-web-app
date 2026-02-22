@@ -10,7 +10,7 @@ export const server = {
     accept: "form",
     // input: searchSchema,
     handler: async (input) => {
-      const searchTerm = input.search.trim();
+      const searchTerm = input.get("search");
 
       const encodedTerm = encodeURIComponent(searchTerm);
 
