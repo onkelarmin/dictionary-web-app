@@ -52,6 +52,13 @@ const siteUrl = import.meta.env.SITE;
   <!-- Main script -->
   <script src="../scripts/main.ts"></script>
 
+  <!-- Anchor positioning polyfill -->
+  <script type="module">
+    if (!("anchorName" in document.documentElement.style)) {
+      import("https://unpkg.com/@oddbird/css-anchor-positioning");
+    }
+  </script>
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content={Astro.url} />
