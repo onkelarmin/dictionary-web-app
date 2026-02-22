@@ -93,7 +93,8 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
 
   //   Menu
   #font-popover-menu {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-cont-md);
     width: var(--size-122px-183px-183px);
     background-color: var(--bg-container-dropdown);
@@ -103,9 +104,10 @@ import ArrowSvg from "@assets/icon-arrow-down.svg";
     padding-inline: var(--pad-cont-sm);
     padding-block: var(--pad-cont-md);
     position-anchor: --font-popover-toggle;
-    inset: unset;
+    inset: auto;
     top: anchor(bottom);
     right: anchor(right);
+    margin: 0;
     margin-block-start: var(--size-12);
     opacity: 0;
     transition:
