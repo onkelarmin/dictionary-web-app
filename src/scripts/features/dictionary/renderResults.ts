@@ -25,11 +25,8 @@ export function renderResults(wordData: WordData) {
     document.querySelector<HTMLTemplateElement>("#source-template");
   const results = document.querySelector<HTMLElement>("#results");
 
-  if (!results) throw new Error("Results div missing");
-
-  results.replaceChildren();
-
   if (
+    !results ||
     !wordHeaderTemplate ||
     !detailsTemplate ||
     !definitionsListItemTemplate ||
@@ -38,10 +35,17 @@ export function renderResults(wordData: WordData) {
     !antonymsTemplate ||
     !flexListItemTemplate ||
     !sourceTemplate
-  )
-    throw new Error("required DOM templates missing");
+  ) {
+    if (import.meta.env.DEV) {
+      throw new Error("Required DOM element missing");
+    }
+    console.error("Required DOM element missing");
+    return;
+  }
 
-  const generateWordHeader = (data: WordData) => {
+  results.replaceChildren();
+
+  const renderWordHeader = (data: WordData) => {
     const clone = wordHeaderTemplate.content.cloneNode(
       true,
     ) as DocumentFragment;
@@ -50,8 +54,13 @@ export function renderResults(wordData: WordData) {
     const phonetic = clone.querySelector<HTMLParagraphElement>(".phonetic");
     const audioButton = clone.querySelector<HTMLButtonElement>(".audio-button");
 
-    if (!word || !phonetic || !audioButton)
-      throw new Error("Word header DOM elements are missing");
+    if (!word || !phonetic || !audioButton) {
+      if (import.meta.env.DEV) {
+        throw new Error("element missing");
+      }
+      console.error("Required DOM element missing");
+      return;
+    }
 
     word.textContent = data.word;
     phonetic.textContent = data.phonetic ?? "No phonetic available";
@@ -61,7 +70,7 @@ export function renderResults(wordData: WordData) {
       audioButton.disabled = true;
     }
 
-    return clone;
+    results.appendChild(clone);
   };
 
   const generateDefinitionsListItem = (data: Definition) => {
@@ -91,7 +100,13 @@ export function renderResults(wordData: WordData) {
 
     const list = clone.querySelector<HTMLUListElement>(".synonyms-list");
 
-    if (!list) throw new Error("Synonym list is missing in DOM");
+    if (!list) {
+      if (import.meta.env.DEV) {
+        throw new Error("Required DOM element missing");
+      }
+      console.error("Required DOM element missing");
+      return clone;
+    }
 
     data.forEach((synonym) => {
       const listItem = generateFlexListItem(synonym);
@@ -107,7 +122,13 @@ export function renderResults(wordData: WordData) {
 
     const list = clone.querySelector<HTMLUListElement>(".antonyms-list");
 
-    if (!list) throw new Error("Antonym list is missing in DOM");
+    if (!list) {
+      if (import.meta.env.DEV) {
+        throw new Error("Required DOM element missing");
+      }
+      console.error("Required DOM element missing");
+      return clone;
+    }
 
     data.forEach((antonym) => {
       const listItem = generateFlexListItem(antonym);
@@ -125,7 +146,13 @@ export function renderResults(wordData: WordData) {
 
     const button = clone.querySelector<HTMLButtonElement>("button");
 
-    if (!button) throw new Error("Button element missing");
+    if (!button) {
+      if (import.meta.env.DEV) {
+        throw new Error("Required DOM element missing");
+      }
+      console.error("Required DOM element missing");
+      return clone;
+    }
 
     button.dataset.trigger = "research";
     button.textContent = data;
@@ -144,8 +171,13 @@ export function renderResults(wordData: WordData) {
     const definitionList =
       clone.querySelector<HTMLUListElement>(".definitions-list");
 
-    if (!meaningTitle || !definitionList)
-      throw new Error("Details DOM elements are missing");
+    if (!meaningTitle || !definitionList) {
+      if (import.meta.env.DEV) {
+        throw new Error("Required DOM element missing");
+      }
+      console.error("Required DOM element missing");
+      return clone;
+    }
 
     meaningTitle.textContent = data.partOfSpeech;
 
@@ -167,12 +199,18 @@ export function renderResults(wordData: WordData) {
     return clone;
   };
 
-  const generateDetails = (data: WordData) => {
+  const renderDetails = (data: WordData) => {
     const clone = detailsTemplate.content.cloneNode(true) as DocumentFragment;
 
     const meaningList = clone.querySelector<HTMLUListElement>(".meaning-list");
 
-    if (!meaningList) throw new Error("Details DOM elements are missing");
+    if (!meaningList) {
+      if (import.meta.env.DEV) {
+        throw new Error("Required DOM element missing");
+      }
+      console.error("Required DOM element missing");
+      return;
+    }
 
     data.meanings.forEach((meaning) => {
       const listItem = generateMeaningListItem(meaning);
@@ -180,29 +218,33 @@ export function renderResults(wordData: WordData) {
       meaningList.appendChild(listItem);
     });
 
-    return clone;
+    results.appendChild(clone);
   };
 
-  const generateSource = (data: WordData) => {
+  const renderSource = (data: WordData) => {
+    if (!data.source) return;
+
     const clone = sourceTemplate.content.cloneNode(true) as DocumentFragment;
 
     const link = clone.querySelector<HTMLAnchorElement>(".link > a");
 
-    if (!link) throw new Error("Source link missing");
+    if (!link) {
+      if (import.meta.env.DEV) {
+        throw new Error("Required DOM element missing");
+      }
+      console.error("Required DOM element missing");
+      return;
+    }
 
     link.href = data.source;
     link.textContent = data.source;
 
-    return clone;
+    results.appendChild(clone);
   };
 
-  const wordHeader = generateWordHeader(wordData);
-  const details = generateDetails(wordData);
-  const source = generateSource(wordData);
-
-  results.appendChild(wordHeader);
-  results.appendChild(details);
-  results.appendChild(source);
+  renderWordHeader(wordData);
+  renderDetails(wordData);
+  renderSource(wordData);
 
   const lenis = getLenis();
   lenis.scrollTo(0, { duration: 0.6 });

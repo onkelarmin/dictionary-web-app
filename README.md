@@ -1,43 +1,84 @@
-# Astro Starter Kit: Minimal
+# Dictionary Web App
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A modern dictionary application that allows users to search for English words and explore definitions, phonetics, audio pronunciation, synonyms, antonyms, and source links.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Built as part of a Frontend Mentor challenge, this project focuses on robust validation, API boundary handling, and clean separation between server logic, domain models, and UI rendering.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Technologies used
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- Astro
+- Astro Actions
+- TypeScript
+- Zod (`astro:schema`)
+- Free Dictionary API
+- SCSS
+- Vanilla JavaScript
+- View Transitions API
+- Lenis
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Features
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Search for English words
+- View:
+  - Definitions
+  - Example sentences
+  - Phonetic spelling
+  - Audio pronunciation (when available)
+  - Synonyms and antonyms
+  - Source links
+- Dedicated “Word Not Found” state
+- Global error handling for network and server failures
+- Accessible form validation with focus management
+- Theme switching (light / dark)
+- Font switching (serif / sans-serif / mono)
+- Responsive layout for all screen sizes
+- Smooth UI transitions
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## Architecture
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+The application follows a layered architecture:
+Form → Client Validation → Astro Action → API Boundary Validation
+→ Transform (API → Domain Model) → Template-Based Rendering
 
-## 👀 Want to learn more?
+- **Shared Validation Schema**  
+  The same Zod schema is used client- and server-side to prevent validation drift.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **API Boundary Validation**  
+  External API responses are validated before being accepted into the application. Unexpected shapes trigger controlled `BAD_GATEWAY` errors.
+
+- **Discriminated Union Responses**  
+  Server responses use explicit status modeling:
+  ```ts
+  { status: "success"; payload: ... }
+  { status: "not_found"; payload: ... }
+  ```
+
+- **Domain Transformation Layer**
+    The UI consumes a normalized internal WordData type instead of raw API data, reducing coupling and improving maintainability.
+
+- **Accessible UX Patterns**
+    Uses aria-invalid, aria-describedby, focus management, and live regions for dynamic state announcements.
+
+- **Explicit Error Modeling**
+    Differentiates between validation errors, not-found states, and upstream failures.
+
+---
+
+## What I learned
+
+- Designing and enforcing API boundaries before consuming external data
+- Sharing validation logic across client and server using Zod
+- Modeling UI states explicitly using discriminated unions
+- Normalizing external data into stable internal domain models
+- Structuring vanilla JavaScript projects with clear separation of concerns
+- Implementing accessible validation and dynamic content updates
+
+---
+
+## Live Demo

@@ -1,7 +1,13 @@
 export function initPlayAudio() {
   const results = document.querySelector<HTMLElement>("#results");
 
-  if (!results) throw new Error("Results element is missing");
+  if (!results) {
+    if (import.meta.env.DEV) {
+      throw new Error("Results element missing");
+    }
+    console.error("Results element missing");
+    return;
+  }
 
   results.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;

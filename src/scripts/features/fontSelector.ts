@@ -10,8 +10,13 @@ export function initFontSelector() {
     ),
   );
 
-  if (!popoverToggleSpan || !popoverMenu || radioInputs.length === 0)
-    throw new Error("Font selector DOM structure missing");
+  if (!popoverToggleSpan || !popoverMenu || radioInputs.length === 0) {
+    if (import.meta.env.DEV) {
+      throw new Error("Required DOM element missing");
+    }
+    console.error("Required DOM element missing");
+    return;
+  }
 
   const storageKey = "font-preference";
 

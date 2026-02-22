@@ -1,44 +1,31 @@
 // API Response
 
-export type ApiPhonetic = {
-  text?: string;
-  audio?: string;
-};
+import type {
+  apiDefinitionSchema,
+  apiEntrySchema,
+  apiMeaningSchema,
+  apiPhoneticSchema,
+  apiSuccessSchema,
+  apiNotFoundSchema,
+} from "@/schemas/search";
+import type { z } from "astro:schema";
 
-export type ApiDefinition = {
-  definition: string;
-  example?: string;
-};
+export type ApiPhonetic = z.infer<typeof apiPhoneticSchema>;
 
-export type ApiMeaning = {
-  partOfSpeech: string;
-  definitions: ApiDefinition[];
-  synonyms: string[];
-  antonyms: string[];
-};
+export type ApiDefinition = z.infer<typeof apiDefinitionSchema>;
 
-export type ApiEntry = {
-  word: string;
-  phonetic?: string;
-  phonetics: ApiPhonetic[];
-  meanings: ApiMeaning[];
-  sourceUrls?: string[];
-};
+export type ApiMeaning = z.infer<typeof apiMeaningSchema>;
 
-export type ApiResponse = ApiEntry[];
+export type ApiEntry = z.infer<typeof apiEntrySchema>;
 
-export type DictionarySuccess = ApiResponse;
-export type DictionaryNotFound = {
-  title: string;
-  message: string;
-  resolution: string;
-};
+export type ApiSuccess = z.infer<typeof apiSuccessSchema>;
+export type ApiNotFound = z.infer<typeof apiNotFoundSchema>;
 
 export type ActionResponse =
-  | { status: "not_found"; payload: DictionaryNotFound }
+  | { status: "not_found"; payload: ApiNotFound }
   | {
       status: "success";
-      payload: DictionarySuccess;
+      payload: ApiSuccess;
     };
 
 // Internal App
@@ -60,5 +47,5 @@ export type WordData = {
   phonetic?: string;
   audio?: string;
   meanings: Meaning[];
-  source: string;
+  source?: string;
 };

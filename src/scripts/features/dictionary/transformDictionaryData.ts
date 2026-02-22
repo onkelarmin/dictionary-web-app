@@ -14,6 +14,6 @@ export function transformDictionaryData(apiData: ApiEntry): WordData {
       synonyms: m.synonyms,
       antonyms: m.antonyms,
     })),
-    source: apiData.sourceUrls[0],
+    source: apiData.sourceUrls ? apiData.sourceUrls[0] : undefined,
   };
 }
