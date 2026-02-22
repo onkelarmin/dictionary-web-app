@@ -82,3 +82,5 @@ Form → Client Validation → Astro Action → API Boundary Validation
 ---
 
 ## Live Demo
+
+https://fm-dictionary-web-app.netlify.app/
